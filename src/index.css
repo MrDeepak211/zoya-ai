@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono:wght@400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-cyan-neon: #01cdfe;
+  --color-purple-neon: #b967ff;
+  --color-pink-neon: #ff71ce;
+  --color-bg-dark: #0a0a0f;
+}
+
+@layer base {
+  body {
+    @apply bg-bg-dark text-slate-100 font-sans selection:bg-pink-neon/30;
+    margin: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+}
+
+.scanline {
+  @apply fixed inset-0 pointer-events-none opacity-[0.05];
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+              linear-gradient(90deg, rgba(236, 72, 153, 0.05), rgba(185, 103, 255, 0.02), rgba(1, 205, 254, 0.05));
+  background-size: 100% 2px, 3px 100%;
+  z-index: 100;
+}
+
+.glow-pink {
+  text-shadow: 0 0 10px rgba(255, 113, 206, 0.5), 0 0 20px rgba(255, 113, 206, 0.2);
+}
+
+.glow-purple {
+  text-shadow: 0 0 10px rgba(185, 103, 255, 0.5), 0 0 20px rgba(185, 103, 255, 0.2);
+}
+
+.glass-panel {
+  @apply bg-black/40 backdrop-blur-2xl border border-white/10;
+}
+
+.hud-border {
+  @apply border border-pink-neon/20 shadow-[0_0_20px_rgba(255,113,206,0.15)];
+}
+
+.holographic-card {
+  @apply relative overflow-hidden;
+}
+
+.holographic-card::before {
+  content: "";
+  @apply absolute inset-0 bg-gradient-to-br from-pink-neon/10 via-transparent to-cyan-neon/10 opacity-30 pointer-events-none;
+}
+
+@keyframes holo-flicker {
+  0% { transform: skewX(0deg) scaleY(1); opacity: 1; }
+  2% { transform: skewX(2deg) scaleY(1.05); opacity: 0.8; }
+  4% { transform: skewX(0deg) scaleY(1); opacity: 1; }
+  50% { transform: skewX(0deg); opacity: 1; }
+  52% { transform: skewX(-1deg) scaleY(0.98); opacity: 0.9; }
+  54% { transform: skewX(0deg); opacity: 1; }
+  100% { transform: skewX(0deg); opacity: 1; }
+}
+
+.holo-distortion {
+  animation: holo-flicker 4s infinite step-end;
+}
+
+.holo-scanline {
+  @apply absolute inset-0 pointer-events-none;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    transparent 50%,
+    rgba(255, 113, 206, 0.05) 50%,
+    rgba(255, 113, 206, 0.05)
+  );
+  background-size: 100% 4px;
+}
+
+.glow-cyan {
+  text-shadow: 0 0 10px rgba(1, 205, 254, 0.5), 0 0 20px rgba(1, 205, 254, 0.2);
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-pink-neon/30 rounded-full;
+}
+
+@keyframes flicker {
+  0% { opacity: 0.97; }
+  5% { opacity: 0.95; }
+  10% { opacity: 0.9; }
+  15% { opacity: 0.95; }
+  25% { opacity: 0.98; }
+  30% { opacity: 0.95; }
+  100% { opacity: 0.97; }
+}
+
+.flicker {
+  animation: flicker 0.1s infinite;
+}

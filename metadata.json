@@ -1,0 +1,12 @@
+{
+  "name": "Zoya AI",
+  "description": "Ultra-premium futuristic anime AI companion with emotional intelligence and immersive holographic interface.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API",
+    "Live Anime Avatar",
+    "Holographic UI",
+    "Emotional Voice System",
+    "Local Memory"
+  ]
+}
